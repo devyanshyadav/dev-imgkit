@@ -54,15 +54,15 @@ A powerful Image or File management platform built with React Vite and AWS servi
 
 2. **Configure Environment Variables**
     ```env
-    # AWS Configuration
-    VITE_APP_CLOUDFRONT_URL=your-cloudfront-url
-    VITE_APP_REGION=your-aws-region
-    VITE_APP_USER_POOL_ID=your-cognito-user-pool-id
-    VITE_APP_USER_POOL_CLIENT_ID=your-client-id
-
-    # API Configuration
-    VITE_APP_API_ENDPOINT=your-api-endpoint
-    VITE_GEMINI_API_KEY=your-gemini-api-key
+      VITE_AWS_ACCESS_KEY=YOUR_ACCESS_KEY
+      VITE_AWS_SECRET_KEY=YOUR_SECRET_KEY
+      VITE_AWS_BUCKET_NAME=YOUR_BUCKET
+      VITE_AWS_REGION=YOUR_REGION
+      VITE_CLOUDFRONT_DOMAIN=YOUR_CLOUDFRONT
+      VITE_GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+      VITE_APP_USER_POOL_ID=YOUR_APP_USER_POOL_ID
+      VITE_USER_POOL_ID=YOUR_USER_POOL_ID
+      VITE_POOL_WEB_CLIENT_ID=YOUR_APP_USER_POOL_CLIENT_ID
     ```
 
 3. **Run Development Server**

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import Dropzone from "react-dropzone";
 import { toast } from "sonner";
 
@@ -39,6 +38,7 @@ const Home: React.FC = () => {
   const [assetTypes, setAssetTypes] = useState<string[]>([]);
   const { userDetails } = useStore();
   const navigate = useNavigate();
+  const MAX_SIZE_BYTES = 20 * 1024 * 1024; // 20MB in bytes
 
   useEffect(() => {
     getFilesFromS3(setS3Files, setIsLoading);
@@ -65,8 +65,26 @@ const Home: React.FC = () => {
       return null;
     }
   };
+
   const handleUploadFiles = async (acceptedFiles: File[]) => {
     try {
+      const existingFilesSize = s3Files
+        .map((f) => f.size)
+        .reduce((a, b) => a + b, 0);
+      const newFilesSize = acceptedFiles
+        .map((f) => f.size)
+        .reduce((a, b) => a + b, 0);
+      const totalSize = existingFilesSize + newFilesSize;
+      // Check if total size exceeds limit
+      if (totalSize > MAX_SIZE_BYTES) {
+        toast.info(
+          `Total size (${normalizeFileSize(
+            totalSize
+          )}) exceeds the limit of 20MB`
+        );
+        return;
+      }
+
       setIsUploading(true);
       toast.custom(
         () => (
@@ -78,7 +96,7 @@ const Home: React.FC = () => {
             </p>
           </div>
         ),
-        { id: "uploading" }
+        { id: "uploading", duration: Infinity }
       );
 
       const uploadResults = await uploadFilesToS3(acceptedFiles);
@@ -159,7 +177,9 @@ const Home: React.FC = () => {
           className="hidden"
           multiple
         />
-        <span className="md:block hidden">{isUploading ? "Uploading..." : text}</span>
+        <span className="md:block hidden">
+          {isUploading ? "Uploading..." : text}
+        </span>
         {isUploading && <RiLoader2Line className="animate-spin text-lg" />}
       </DevButton>
     );
@@ -169,10 +189,19 @@ const Home: React.FC = () => {
     <>
       <header className="w-full px-2 space-y-2">
         <div className="flex items-center justify-between">
-         <a href="/" className="flex gap-1 *:select-none items-center">
-         <img src="/logo.png" alt="logo" className="aspect-square w-10 h-10"/>
-         <h2 className="font-semibold flex text-lg flex-col">DEV <span className="text-xs text-accent p-0.5 px-2 rounded-full bg-accent/20">IMG KIT</span></h2>
-         </a>
+          <a href="/" className="flex gap-1 *:select-none items-center">
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="aspect-square w-10 h-10"
+            />
+            <h2 className="font-semibold flex text-lg flex-col">
+              DEV{" "}
+              <span className="text-xs text-accent p-0.5 px-2 rounded-full bg-accent/20">
+                IMG KIT
+              </span>
+            </h2>
+          </a>
           <div className="flex items-center gap-2">
             {!isLoading && (
               <div className="bg-white border border-shade px-2 rounded-xl flex items-center gap-1">
@@ -185,6 +214,7 @@ const Home: React.FC = () => {
                   {normalizeFileSize(
                     s3Files.map((f) => f.size).reduce((a, b) => a + b, 0)
                   )}
+                  /{normalizeFileSize(MAX_SIZE_BYTES).replace(".00", "")}
                 </h3>
               </div>
             )}
@@ -309,7 +339,6 @@ const Home: React.FC = () => {
           setSelectedS3Files={setSelectedS3Files}
         />
       </div>
-      
     </>
   );
 };
