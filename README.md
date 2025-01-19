@@ -121,6 +121,8 @@ npm run build
 - [Backend Architecture Blog](https://www.developerthink.com/blogs/on-fly-image-transformation-pipeline-using-amazon-cloudfront-and-aws-lambda)
 - [YOUTUBE Concept Video](https://www.youtube.com/watch?v=5iEgfqugU5Y&t=2s)
 - [GEMINI API Documentation](https://ai.google.dev/gemini-api/docs)
+- [Dev Components](https://dev-components.vercel.app/)
+
 
 ---
 
