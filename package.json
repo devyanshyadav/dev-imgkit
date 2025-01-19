@@ -29,6 +29,7 @@
     "react-router-dom": "^7.1.1",
     "react-tooltip": "^5.28.0",
     "react-use-downloader": "^1.2.8",
+    "sharp": "^0.33.5",
     "sonner": "^1.7.2",
     "zustand": "^5.0.3"
   },

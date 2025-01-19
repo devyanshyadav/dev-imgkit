@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import GithubCta from "../global-cmp/github-cta";
 
 const Layout = () => {
   return (
@@ -7,6 +8,7 @@ const Layout = () => {
       <div className="max-w-7xl overflow-hidden mx-auto flex flex-col h-full space-y-3">
         <Outlet />
       </div>
+      <GithubCta/>
     </main>
   );
 };

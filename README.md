@@ -119,13 +119,8 @@ npm run build
 ## 🔗 Related Resources
 
 - [Backend Architecture Blog](https://www.developerthink.com/blogs/on-fly-image-transformation-pipeline-using-amazon-cloudfront-and-aws-lambda)
-- [YOUTUBE CONCEPT VIDEO](https://www.youtube.com/watch?v=5iEgfqugU5Y&t=2s)
+- [YOUTUBE Concept Video](https://www.youtube.com/watch?v=5iEgfqugU5Y&t=2s)
 - [GEMINI API Documentation](https://ai.google.dev/gemini-api/docs)
-
-
-## 📝 License
-
-MIT License - See LICENSE file for details
 
 ---
 
