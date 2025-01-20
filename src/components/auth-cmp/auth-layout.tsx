@@ -1,4 +1,4 @@
-import { fetchUserAttributes, getCurrentUser } from "aws-amplify/auth";
+import {getCurrentUser } from "aws-amplify/auth";
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
