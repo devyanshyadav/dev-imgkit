@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import Dropzone from "react-dropzone";
 import { toast } from "sonner";
-
 import { getFileType } from "../../utils/file-type";
 import DevDropdown from "../../components/dev-components/dev-dropdown";
 import DevInput from "../../components/dev-components/dev-input";
@@ -9,7 +8,6 @@ import { FiDownload, FiSearch } from "react-icons/fi";
 import DevButton from "../../components/dev-components/dev-button";
 import DevSelect from "../../components/dev-components/dev-select";
 import { FaListUl } from "react-icons/fa";
-import { SiGithub } from "react-icons/si";
 import {
   getFilesFromS3,
   S3File,
@@ -40,7 +38,7 @@ const Home: React.FC = () => {
   const [assetTypes, setAssetTypes] = useState<string[]>([]);
   const { userDetails } = useStore();
   const navigate = useNavigate();
-  const MAX_SIZE_BYTES = 20 * 1024 * 1024; // 20MB in bytes
+  const MAX_SIZE_BYTES = 50 * 1024 * 1024; // 50MB in bytes
 
   useEffect(() => {
     getFilesFromS3(setS3Files, setIsLoading);

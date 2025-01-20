@@ -13,7 +13,7 @@ import DevModal from "../dev-components/dev-modal";
 import TransformationModal from "./transformation-modal";
 import { FileKey } from "lucide-react";
 import { IoMdClose } from "react-icons/io";
-import EditImgIcon from "../../utils/editImgIcon";
+import EditImgIcon from "../../utils/edit-img-icon";
 import DevTooltip from "../dev-components/dev-tooltip";
 import DevButton from "../dev-components/dev-button";
 import { getFileType } from "../../utils/file-type";
