@@ -27,6 +27,7 @@ import SelectBar from "../../components/global-cmp/select-bar";
 import { useStore } from "../../utils/zustsore";
 import { signOut } from "aws-amplify/auth";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../components/global-cmp/logo";
 
 const Home: React.FC = () => {
   const [s3Files, setS3Files] = useState<S3File[]>([]);
@@ -190,19 +191,7 @@ const Home: React.FC = () => {
     <>
       <header className="w-full px-2 space-y-2">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex gap-1 *:select-none items-center">
-            <img
-              src="/logo.png"
-              alt="logo"
-              className="aspect-square w-10 h-10"
-            />
-            <h2 className="font-semibold flex text-lg flex-col">
-              DEV{" "}
-              <span className="text-xs text-accent p-0.5 px-2 rounded-full bg-accent/20">
-                IMG KIT
-              </span>
-            </h2>
-          </a>
+         <Logo size="45px"/>
           <div className="flex items-center gap-2">
             {!isLoading && (
               <div className="bg-white border border-shade px-2 rounded-xl flex items-center gap-1">
