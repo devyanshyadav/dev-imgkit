@@ -7,6 +7,7 @@ import { RiLoader2Fill } from "react-icons/ri";
 import DevInput from "../../components/dev-components/dev-input";
 import { nanoid } from "nanoid";
 import { DevForm, FormInput } from "../../components/dev-components/dev-form";
+import Logo from "../../components/global-cmp/logo";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -69,9 +70,11 @@ const Login = () => {
   };
 
   return (
-    <section className="grid grid-rows-[30vh,1fr] h-screen w-full relative">
-      <div></div>
+    <section className="grid grid-rows-[60vh,1fr] h-screen w-full relative">
+      <div className=" bg-[url('/auth-bg.png')] bg-no-repeat bg-cover bg-bottom"></div>
       <div className="w-96 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl border p-4 py-6 shadow">
+        <Logo size="50px" />
+        <br />
         <div>
           <div className="text-2xl">Welcome Back 👋</div>
           <div>Login in to your account to continue</div>
@@ -120,7 +123,6 @@ const Login = () => {
           </div>
         </DevForm>
       </div>
-      <div className=" bg-[url('/auth-bg.png')] bg-no-repeat bg-cover bg-start" />
     </section>
   );
 };

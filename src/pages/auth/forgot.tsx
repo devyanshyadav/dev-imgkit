@@ -3,6 +3,7 @@ import { resetPassword } from 'aws-amplify/auth';
 import {toast } from 'sonner'
 import DevButton from '../../components/dev-components/dev-button';
 import { DevForm, FormInput } from '../../components/dev-components/dev-form';
+import Logo from '../../components/global-cmp/logo';
 
 const validationRules = {
   email: {
@@ -61,6 +62,8 @@ const ForgotPassword = () => {
     <section className="grid grid-cols-2 h-screen w-full relative">
  <div className=" bg-[url('/auth-bg.png')] bg-no-repeat bg-cover bg-right-bottom"/>
     <div className="w-96 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl border p-4 py-6 shadow">
+    <Logo size="50px"/>
+      <br />
       <div>
         <h2 className="text-2xl">Forgot Password</h2>
         <p>Submit your email address and we'll send you a code to reset your

@@ -1,11 +1,14 @@
 import { FaCircleCheck } from "react-icons/fa6";
 import DevButton from "../../components/dev-components/dev-button";
 import { IoMdHappy } from "react-icons/io";
+import Logo from "../../components/global-cmp/logo";
 
 const ResetSuccess = () => {
   return (
     <section className="flex items-center justify-center gap-5 w-full h-full bg-shade/30">
       <div className=" flex-grow  rounded-xl border border-shade/50 max-w-xl bg-white w-full flex flex-col p-5 justify-center">
+      <Logo size="50px"/>
+      <br />
         <div className="space-y-4">
           <div className="bg-accent/20 rounded-2xl p-1 w-fit">
           <IoMdHappy className="text-6xl text-accent" />

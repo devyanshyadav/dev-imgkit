@@ -10,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { DevForm, FormInput } from "../../components/dev-components/dev-form";
 import { RiLoader2Fill } from "react-icons/ri";
+import Logo from "../../components/global-cmp/logo";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showVerification, setShowVerification] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
   const bucketId = nanoid(8);
 
   const validationRules = {
@@ -36,7 +37,7 @@ const SignUp = () => {
         return null;
       },
     },
-  
+
     verificationCode: {
       required: showVerification ? "Verification code is required" : false,
       pattern: {
@@ -87,7 +88,7 @@ const SignUp = () => {
 
       try {
         // Check user status first
-        setLoading(true)
+        setLoading(true);
         const userStatus = await checkUserStatus(
           String(email),
           String(password)
@@ -126,9 +127,8 @@ const SignUp = () => {
       } catch (error: any) {
         console.error("Signup error:", error);
         toast.error(error.message || "An error occurred during sign up");
-      }
-      finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     } else {
       console.log("Form errors:", result.errors);
@@ -143,12 +143,12 @@ const SignUp = () => {
       const { verificationCode } = result.values;
 
       try {
-        setLoading(true)
+        setLoading(true);
         await confirmSignUp({
           username: userEmail,
           confirmationCode: String(verificationCode),
         });
-        
+
         toast.success("Account verified successfully!");
         await signIn({ username: userEmail, password: userPassword });
         navigate("/dashboard");
@@ -159,16 +159,18 @@ const SignUp = () => {
           toast.error("An error occurred during verification");
           console.error(error);
         }
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     }
   };
 
   return (
-    <section className="grid grid-rows-2 h-screen w-full relative">
-      <div className=" bg-[url('/auth-bg.png')] bg-no-repeat bg-cover bg-bottom"></div>
+    <section className="grid grid-rows-[30vh,1fr] h-screen w-full relative">
+      <div></div>
       <div className="w-96 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl border p-4 py-6 shadow">
+        <Logo size="50px" />
+        <br />
         <div>
           <div className="text-2xl">Hello User 👋</div>
           <div>Sign up to continue</div>
@@ -190,29 +192,32 @@ const SignUp = () => {
               }`,
             }}
           />
-         {!showVerification && <>
-            <FormInput
-            name="password"
-            type="password"
-            label="Password"
-            classNames={{
-              inputContainer: `${
-                showVerification ? "pointer-events-none opacity-70" : ""
-              }`,
-            }}
-            placeholder="Enter password"
-          />
-          <FormInput
-            name="terms"
-            type="checkbox"
-            label="For educational use only, no long-term data storage responsibility."
-            classNames={{
-              mainContainer: "flex  items-center gap-2 w-fit flex-row-reverse",
-              inputContainer: "!w-fit !rounded",
-            }}
-          />
-         </>}
-           {showVerification && (
+          {!showVerification && (
+            <>
+              <FormInput
+                name="password"
+                type="password"
+                label="Password"
+                classNames={{
+                  inputContainer: `${
+                    showVerification ? "pointer-events-none opacity-70" : ""
+                  }`,
+                }}
+                placeholder="Enter password"
+              />
+              <FormInput
+                name="terms"
+                type="checkbox"
+                label="For educational use only, no long-term data storage responsibility."
+                classNames={{
+                  mainContainer:
+                    "flex  items-center gap-2 w-fit flex-row-reverse",
+                  inputContainer: "!w-fit !rounded",
+                }}
+              />
+            </>
+          )}
+          {showVerification && (
             <>
               <FormInput
                 name="verificationCode"
@@ -235,7 +240,8 @@ const SignUp = () => {
             className="w-full flex items-center justify-center gap-1 bg-accent font-semibold text-white py-2 px-4 rounded-xl !outline-none focus:ring-2 
            focus:ring-accent/50 transition-all"
           >
-            {showVerification ? 'Verify Account' : 'Create Bucket'}{isLoading && <RiLoader2Fill className="animate-spin" />}
+            {showVerification ? "Verify Account" : "Create Bucket"}
+            {isLoading && <RiLoader2Fill className="animate-spin" />}
           </button>
           <div className="text-center mt-4">
             <span className="text-gray-600">Already have an account? </span>
@@ -248,6 +254,7 @@ const SignUp = () => {
           </div>
         </DevForm>
       </div>
+      <div className=" bg-[url('/auth-bg.png')] bg-no-repeat bg-cover bg-start" />
     </section>
   );
 };
